@@ -1,0 +1,54 @@
+<?php
+
+namespace Etudiant\EtudiantBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Matiere
+ *
+ * @ORM\Table(name="matiere")
+ * @ORM\Entity
+ */
+class Matiere
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_mat", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idMat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="intitule_mat", type="string", length=20, nullable=false)
+     */
+    private $intituleMat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description_mat", type="string", length=200, nullable=false)
+     */
+    private $descriptionMat;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="path_mat", type="string", length=50, nullable=false)
+     */
+    private $pathMat;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nb_certif", type="integer", nullable=false)
+     */
+    private $nbCertif;
+
+
+}
+

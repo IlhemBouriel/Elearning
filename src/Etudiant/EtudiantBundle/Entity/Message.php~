@@ -1,0 +1,68 @@
+<?php
+
+namespace Etudiant\EtudiantBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Message
+ *
+ * @ORM\Table(name="message")
+ * @ORM\Entity
+ */
+class Message
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_msg", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idMsg;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_emet", type="integer", nullable=false)
+     */
+    private $idEmet;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_recep", type="integer", nullable=false)
+     */
+    private $idRecep;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="titre_msg", type="string", length=20, nullable=false)
+     */
+    private $titreMsg;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contenu_msg", type="string", length=200, nullable=false)
+     */
+    private $contenuMsg;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="dateenvoi_msg", type="date", nullable=false)
+     */
+    private $dateenvoiMsg;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="datelecture_msg", type="date", nullable=false)
+     */
+    private $datelectureMsg;
+
+
+}
+

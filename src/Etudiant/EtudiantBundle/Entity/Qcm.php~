@@ -1,0 +1,36 @@
+<?php
+
+namespace Etudiant\EtudiantBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Qcm
+ *
+ * @ORM\Table(name="qcm", indexes={@ORM\Index(name="fk_qcm", columns={"id_mat_qcm"})})
+ * @ORM\Entity
+ */
+class Qcm
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_qcm", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idQcm;
+
+    /**
+     * @var \Matiere
+     *
+     * @ORM\ManyToOne(targetEntity="Matiere")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="id_mat_qcm", referencedColumnName="id_mat")
+     * })
+     */
+    private $idMatQcm;
+
+
+}
+

@@ -1,0 +1,40 @@
+<?php
+
+namespace Etudiant\EtudiantBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Choix
+ *
+ * @ORM\Table(name="choix")
+ * @ORM\Entity
+ */
+class Choix
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_choix", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idChoix;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="texte", type="string", length=50, nullable=false)
+     */
+    private $texte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="statut", type="string", nullable=false)
+     */
+    private $statut;
+
+
+}
+

@@ -1,0 +1,84 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+{{ include('EtudiantEtudiantBundle:etudiant:importBS.html.twig')}}
+<link href="{{ asset('bundles/etudiantetudiant/alertCSS.css') }}" rel="stylesheet" />
+<link rel="stylesheet" href="{{ asset('bundles/etudiantetudiant/font/css/font-awesome.min.css') }}">
+{% if taille == 0 %}
+<div class="alert-box notice"><span style="font-size:15px">notice: </span>you haven't taken any courses.</div>
+{% else %}
+<table id="myTable" class="table table-bordered">
+ <thead>
+    <tr>
+      <th>Course</th>
+      <th>Description</th>
+      <th>Nb of followers</th>
+      <th>Course</th>
+      <th>Unfollow</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% set l=1 %}
+ {% for key,value  in courses %}
+  <tr>
+    <td><b>{{value.intituleMat}}</b></td>
+    <td><a href="#" onclick="show({{value.idMat}})">Show Description</a>
+      <div id="hide{{value.idMat}}" style="visibility:hidden">{{value.descriptionMat}}</div></td>
+    {% set i = value.idMat %}
+    <td>{{tab[i]}}</td>
+    <td><button type="button" onclick="start('{{value.pathMat}}')" class="btn btn-danger img-circle"  style="border-radius:100%">Start</button>
+</td>
+    <td><div id="stop{{value.idMat}}"><button id="butt{{value.idMat}}" type="button" class="btn btn-danger img-circle" onclick="stop({{value.idMat}},{{idetud}},{{l}})" style="border-radius:100%">Stop</button></div></td>
+  {% set l = l + 1 %}
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endif %}
+<script type="text/javascript">
+function show(id)
+{
+  var ch ="hide";
+  var c=ch.concat(id);
+  if(document.getElementById(c).style.visibility=="hidden")
+  {
+    document.getElementById(c).style.visibility="visible";
+  }
+  else
+  {
+    document.getElementById(c).style.visibility="hidden";
+  }
+}
+
+function stop(idmat,idet,l)
+{
+  var b = "#butt";
+  var div ="#stop";
+  var butt=b.concat(idmat);
+  var stop=div.concat(idmat);
+  $(butt).hide();
+  $(stop).addClass("fa fa-spinner fa-spin fa-3x fa-fw");
+   $.ajax({
+       url : "{{ path('etudiant_deleteC_homepage')}}",
+       type : "POST",
+       data : "idet=" + idet + "&idmat="+ idmat,
+       success : function(code_html){ 
+       document.getElementById("myTable").deleteRow(l);
+       }
+    });
+   
+}
+
+function start(chemin)
+{
+  $.ajax({
+    url : "{{path('etudiant_openC_homepage')}}",
+    type : "POST",
+    data : "chemin="+chemin,
+    success:function(code_html)
+    {
+    
+    }
+  });
+}
+</script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src="{{ asset('bundles/etudiantetudiant/jquery-3.0.0.min.js')}}"></script>

@@ -1,0 +1,48 @@
+EtudiantMatiere:
+    type: entity
+    table: etudiant_matiere
+    indexes:
+        id_etud_assoc:
+            columns:
+                - id_etud_assoc
+        id_mat_assoc:
+            columns:
+                - id_mat_assoc
+    id:
+        idAssoc:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_assoc
+            generator:
+                strategy: IDENTITY
+    fields:
+        note:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    manyToOne:
+        idEtudAssoc:
+            targetEntity: Etudiant
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_etud_assoc:
+                    referencedColumnName: id_etud
+            orphanRemoval: false
+        idMatAssoc:
+            targetEntity: Matiere
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_mat_assoc:
+                    referencedColumnName: id_mat
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

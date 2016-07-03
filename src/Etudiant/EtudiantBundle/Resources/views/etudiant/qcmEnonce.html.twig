@@ -1,0 +1,179 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+{{ include('EtudiantEtudiantBundle:etudiant:importBS.html.twig')}}
+<script src="{{ asset('bundles/etudiantetudiant/jquery-3.0.0.min.js') }}"></script>
+<link href="{{ asset('bundles/etudiantetudiant/alertCSS.css') }}" rel="stylesheet" />
+
+<style type="text/css">
+.checkbox label:after, 
+.radio label:after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+.checkbox .cr,
+.radio .cr {
+    position: relative;
+    display: inline-block;
+    border: 1px solid #a9a9a9;
+    border-radius: .25em;
+    width: 1.3em;
+    height: 1.3em;
+    float: left;
+    margin-right: .5em;
+}
+
+.radio .cr {
+    border-radius: 50%;
+}
+
+.checkbox .cr .cr-icon,
+.radio .cr .cr-icon {
+    position: absolute;
+    font-size: .8em;
+    line-height: 0;
+    top: 50%;
+    left: 20%;
+}
+
+.radio .cr .cr-icon {
+    margin-left: 0.04em;
+}
+
+.checkbox label input[type="checkbox"],
+.radio label input[type="radio"] {
+    display: none;
+}
+
+.checkbox label input[type="checkbox"] + .cr > .cr-icon,
+.radio label input[type="radio"] + .cr > .cr-icon {
+    transform: scale(3) rotateZ(-20deg);
+    opacity: 0;
+    transition: all .3s ease-in;
+}
+
+.checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+.radio label input[type="radio"]:checked + .cr > .cr-icon {
+    transform: scale(1) rotateZ(0deg);
+    opacity: 1;
+}
+
+.checkbox label input[type="checkbox"]:disabled + .cr,
+.radio label input[type="radio"]:disabled + .cr {
+    opacity: .5;
+}
+
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+.close:hover {
+    background: #00d9ff;
+}
+</style>
+
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div id="content">
+{% for key,value in QuestRep %}
+<div id="div{{key}}">
+<b>* </b>
+<b>{{ questions[key].ennonce }}:</b></br>
+{% for ch in value %}
+
+        <div class="checkbox">
+            <label style="font-size: 1em">
+                <input type="checkbox" value="{{ch.idChoixAssoc}}" onclick="methode({{key}},{{ch.idChoixAssoc}},{{idetud}},{{idmat}},{{nb}})" >
+                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+             {% set id = ch.idChoixAssoc  %}
+{{choix[id].texte}}</br>
+            </label>
+        </div>
+
+{% endfor %}
+</form>
+</div>
+</br></br>
+{% endfor %}
+</div>
+
+
+<script type="text/javascript">
+function methode(idq,idc,idetud,idmat,nbq)
+{
+    var elementID= "div".concat(idq);
+	$.ajax({
+       url : "{{ path('etudiant_verify_homepage')}}",
+       type : "POST",
+       data : "idq=" + idq + "&idc="+ idc + "&idetud="+idetud+"&idmat="+idmat,
+       success : function(code_html){ 
+       document.getElementById(elementID).innerHTML = "";
+       if(code_html=='true')
+       {
+       alert(code_html);
+       }
+       else
+       {
+       alert(code_html);
+       }
+      if ( $.trim( $('#content').text() ).length == 0 )
+       {
+       $.ajax({
+       url : "{{ path('etudiant_getpoint_homepage')}}",
+       type : "POST",
+       data : "idetud="+idetud+"&idmat="+idmat+"&nbq="+nbq,
+       success : function(code_html){
+     $('#content').html(code_html);
+     }});
+}
+       }
+    });
+}
+</script>
+
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+

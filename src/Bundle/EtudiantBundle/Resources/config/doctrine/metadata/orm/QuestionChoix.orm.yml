@@ -1,0 +1,42 @@
+QuestionChoix:
+    type: entity
+    table: question_choix
+    indexes:
+        id_quest_assoc:
+            columns:
+                - id_quest_assoc
+        id_choix_assoc:
+            columns:
+                - id_choix_assoc
+    id:
+        idAsso:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_asso
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idQuestAssoc:
+            targetEntity: Question
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_quest_assoc:
+                    referencedColumnName: id_quest
+            orphanRemoval: false
+        idChoixAssoc:
+            targetEntity: Choix
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_choix_assoc:
+                    referencedColumnName: id_choix
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

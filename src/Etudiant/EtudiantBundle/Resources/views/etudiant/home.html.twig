@@ -1,0 +1,17 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+<link href="{{ asset('bundles/etudiantetudiant/alertCSS.css') }}" rel="stylesheet" />
+{% if msg == ' ' %}
+    {% else %}
+    {% if code == 1 %}
+    <div class="alert-box success"><span>success: </span>{{msg}}</div>
+    {% elseif code == 2 %}
+    <div class="alert-box error"><span>error: </span>{{msg}}</div>
+    {% else %}
+    <div class="alert-box warning"><span>warning: </span>{{msg}}</div>
+    {% endif %}
+{% endif %}
+ </div>
+            
+            </div>
+        
+        </div>

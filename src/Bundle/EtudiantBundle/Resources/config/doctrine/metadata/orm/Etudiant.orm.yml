@@ -1,0 +1,55 @@
+Etudiant:
+    type: entity
+    table: etudiant
+    id:
+        idEtud:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_etud
+            generator:
+                strategy: IDENTITY
+    fields:
+        login:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 10
+            options:
+                fixed: false
+        nomEtud:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: nom_etud
+        prenomEtud:
+            type: text
+            nullable: false
+            length: 65535
+            options:
+                fixed: false
+            column: prenom_etud
+        faculteEtud:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: faculte_etud
+        mailEtud:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: mail_etud
+    lifecycleCallbacks: {  }

@@ -1,0 +1,7 @@
+etudiant_etudiant:
+    resource: "@EtudiantEtudiantBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

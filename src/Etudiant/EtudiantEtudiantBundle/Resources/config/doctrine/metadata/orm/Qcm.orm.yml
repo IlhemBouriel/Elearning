@@ -1,0 +1,29 @@
+Qcm:
+    type: entity
+    table: qcm
+    indexes:
+        fk_qcm:
+            columns:
+                - id_mat_qcm
+    id:
+        idQcm:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_qcm
+            generator:
+                strategy: IDENTITY
+    manyToOne:
+        idMatQcm:
+            targetEntity: Matiere
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_mat_qcm:
+                    referencedColumnName: id_mat
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

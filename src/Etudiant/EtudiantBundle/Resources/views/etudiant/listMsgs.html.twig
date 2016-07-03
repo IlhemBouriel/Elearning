@@ -1,0 +1,174 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+{{ include('EtudiantEtudiantBundle:etudiant:importBS.html.twig')}}
+
+<style type="text/css">
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+.modalDialog > div {
+    width: 400px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+.close:hover {
+    background: #00d9ff;
+}
+.bold{
+  font-weight:bold;
+}
+</style>
+ 
+    
+    <div class="col-sm-9 col-md-10">
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#home" data-toggle="tab"><span class="glyphicon glyphicon-inbox">
+                </span>Primary</a></li>
+        <li><a href="#profile" data-toggle="tab"><span class="glyphicon glyphicon-user"></span>
+                    Social</a></li>
+        <li><a href="#messages" data-toggle="tab"><span class="glyphicon glyphicon-tags"></span>
+                    Promotions</a></li>
+        <li><a href="#settings" data-toggle="tab"><span class="glyphicon glyphicon-plus no-margin">
+                </span></a></li>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div class="tab-pane fade in active" id="home">
+          <div class="list-group">
+            <a href="#" class="list-group-item">
+          
+
+    {%set i = 1 %}
+   {% for message in messages %}
+   {% if message.datelectureMsg is null %}
+     <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
+                                display: inline-block;"><span id="text{{message.idMsg}}">Not Seen</span></span> <span class=""><span id="span{{message.idMsg}}" class="bold">{{ message.titreMsg }}</span></span>
+                                <span class="text-muted" style="font-size: 11px;">"{{ message.contenuMsg }}"</span> 
+              <span class="badge">{{ message.dateenvoiMsg|date('Y-m-d')  }}</span>
+                                {% else %}
+  <span class="glyphicon glyphicon-star-empty"></span><span class="name" style="min-width: 120px;
+                                display: inline-block;">Seen</span> <span class="">{{ message.titreMsg }}</span>
+                                <span class="text-muted" style="font-size: 11px;">"{{ message.contenuMsg }}"</span> 
+              <span class="badge">{{ message.dateenvoiMsg|date('Y-m-d')  }}</span>
+                                {% endif %}
+
+               <span class="pull-right"><button onclick="methode({{message.idMsg}})"><span class="glyphicon glyphicon-eye-open">
+                                </span></button></span>
+            </a>
+               <a id="lien{{message.idMsg}}" href="#openModal{{message.idMsg}}" style="visibility:hidden">ff</a>
+
+
+<div id="openModal{{message.idMsg}}" class="modalDialog">
+    <div> <a href="#close" title="Close" class="close">X</a>
+
+          <h2>{{message.titreMsg}}</h2>
+
+        <p>{{message.contenuMsg}}.</p>
+    </div>
+</div>
+            <a href="#" class="list-group-item">
+            
+
+
+                {% endfor %}
+             
+            </a>
+           
+          </div>
+        </div>
+        <div class="tab-pane fade in" id="profile">
+          <div class="list-group">
+            <div class="list-group-item">
+              <span class="text-center">This tab is empty.</span>
+            </div>
+          </div>
+        </div>
+        <div class="tab-pane fade in" id="messages">
+          ...</div>
+        <div class="tab-pane fade in" id="settings">
+          This tab is empty.</div>
+      </div>
+    </div>
+  
+<div class="container">
+  <div class="row">
+    
+
+  </div>
+  <hr />
+
+</div>
+
+</div>
+    </div>
+        </div>
+
+
+
+<script type="text/javascript">
+function methode(id)
+{
+var lien='lien'.concat(id);
+var span = '#span'.concat(id);
+var text = '#text'.concat(id);
+var tt = 'text'.concat(id);
+ $.ajax({
+       url : "{{ path('etudiant_updateMsg_homepage')}}",
+       type : "POST",
+       data : "id="+id,
+       success : function(code_html){
+    document.getElementById(lien).click();
+    if (code_html == '1')
+    {
+    $(span).removeClass("bold");
+    document.getElementById(tt).innerHTML =" ";
+    $(text).html('Seen');
+    }
+    }
+     });
+    }
+
+
+</script>
+<script src="{{ asset('bundles/etudiantetudiant/jquery-3.0.0.min.js') }}"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

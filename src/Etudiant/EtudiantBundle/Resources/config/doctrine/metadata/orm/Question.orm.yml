@@ -1,0 +1,36 @@
+Question:
+    type: entity
+    table: question
+    indexes:
+        fk_question:
+            columns:
+                - id_qcm_quest
+    id:
+        idQuest:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_quest
+            generator:
+                strategy: IDENTITY
+    fields:
+        ennonce:
+            type: string
+            nullable: false
+            length: 100
+            options:
+                fixed: false
+    manyToOne:
+        idQcmQuest:
+            targetEntity: Qcm
+            cascade: {  }
+            fetch: LAZY
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                id_qcm_quest:
+                    referencedColumnName: id_qcm
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

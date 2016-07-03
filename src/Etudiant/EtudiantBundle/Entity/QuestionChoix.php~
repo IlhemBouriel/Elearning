@@ -1,0 +1,40 @@
+<?php
+
+namespace Etudiant\EtudiantBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * QuestionChoix
+ *
+ * @ORM\Table(name="question_choix", indexes={@ORM\Index(name="fk2", columns={"id_choix_assoc"}), @ORM\Index(name="id_quest_assoc", columns={"id_quest_assoc"}), @ORM\Index(name="id_choix_assoc", columns={"id_choix_assoc"})})
+ * @ORM\Entity
+ */
+class QuestionChoix
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_asso", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idAsso;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_quest_assoc", type="integer", nullable=false)
+     */
+    private $idQuestAssoc;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_choix_assoc", type="integer", nullable=false)
+     */
+    private $idChoixAssoc;
+
+
+}
+

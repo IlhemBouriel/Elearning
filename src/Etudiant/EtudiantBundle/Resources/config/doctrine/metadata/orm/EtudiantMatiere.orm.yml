@@ -1,0 +1,39 @@
+EtudiantMatiere:
+    type: entity
+    table: etudiant_matiere
+    indexes:
+        id_etud_assoc:
+            columns:
+                - id_etud_assoc
+        id_mat_assoc:
+            columns:
+                - id_mat_assoc
+    id:
+        idAssoc:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_assoc
+            generator:
+                strategy: IDENTITY
+    fields:
+        idEtudAssoc:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_etud_assoc
+        idMatAssoc:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_mat_assoc
+        note:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+    lifecycleCallbacks: {  }

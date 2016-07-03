@@ -1,0 +1,68 @@
+<?php
+
+namespace Etudiant\EtudiantBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Etudiant
+ *
+ * @ORM\Table(name="etudiant")
+ * @ORM\Entity
+ */
+class Etudiant
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_etud", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idEtud;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=10, nullable=false)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="password", type="string", length=10, nullable=false)
+     */
+    private $password;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nom_etud", type="string", length=20, nullable=false)
+     */
+    private $nomEtud;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="prenom_etud", type="text", length=65535, nullable=false)
+     */
+    private $prenomEtud;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="faculte_etud", type="string", length=20, nullable=false)
+     */
+    private $faculteEtud;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mail_etud", type="string", length=20, nullable=false)
+     */
+    private $mailEtud;
+
+
+}
+

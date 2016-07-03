@@ -1,0 +1,161 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+{{ include('EtudiantEtudiantBundle:etudiant:importBS.html.twig')}}
+<link href="{{ asset('bundles/etudiantetudiant/alertCSS.css') }}" rel="stylesheet" />
+
+<style type="text/css">
+
+
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: black;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h3 {
+  margin-top: 0;
+  color: #ecf0f1;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: red;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+#boutton:hover {
+	font-family: Arial,sans-serif;
+     font-size: 1.6em;
+     width: 200px;
+     height: 43px;
+     padding-top: 7px; /*permet le centrage vertical*/
+     text-align: center;
+     color: #000;
+     background: #444;
+}
+p{
+  color:#bdc3c7;
+}
+.bordure
+{
+  border-width:1px;
+ border-style:solid;
+ border-color:black;
+ padding-left:10px;
+ border-radius: 10px;
+
+}
+</style>
+
+
+<div id="content">
+{% for key,value in questions %}
+<div id="bordure{{key}}">
+<div class="bordure">
+</br>
+<h4> {{matieres[key].intituleMat}}</h4></br>
+{{value.ennonce}}</br> 
+{% for k,val in QuestRep %}
+{% if k == key %}
+{% for ch in val %}
+
+      <button onclick="methode({{k}},{{ch.idChoixAssoc}},{{idetud}},{{matieres[key].idMat}},{{ choices[ch.idChoixAssoc].statut}})" type="button" class="btn btn-default">{{choices[ch.idChoixAssoc].texte}}</button>
+
+<a id="lien{{ch.idChoixAssoc}}" style="visibility:hidden" href="#popup{{ch.idChoixAssoc}}" type="button" class="btn btn-default" />
+
+
+     <div id="popup{{ch.idChoixAssoc}}"  class="overlay">
+  <div class="popup">
+  {% if choices[ch.idChoixAssoc].statut == 'true'%}
+    <a class="close" href="#">×</a>
+    <h3>TRUE</h3>
+    <div class="content">
+      <p>{{choices[ch.idChoixAssoc].texte}} is the right answer .</p>
+    </div>
+    {% else %}
+    <a class="close" href="#">×</a>
+        <h3>FALSE</h3>
+    <div class="content">
+     <p> Thanks for for the try, but " {{choices[ch.idChoixAssoc].texte}} " isn't the right answer .</p>
+    </div>
+    {% endif %}
+  
+</div>
+</div>
+
+{% endfor %}
+{% endif %}
+{% endfor %}
+</br></br>
+</div>
+</div>
+</br>
+{% endfor %}
+</div>
+
+
+
+
+    
+            </div>
+        
+        </div>
+
+        <script type="text/javascript">
+        function methode(idq,idc,idetud,idmat,statut)
+        {
+        var ch = 'lien'.concat(idc);
+        document.getElementById(ch).click();
+        var bord = 'bordure'.concat(idq);
+        $.ajax({
+       url : "{{ path('etudiant_test_homepage')}}",
+       data : "idetud="+idetud+"&idmat="+idmat+"&statut="+statut,
+       type : "POST",
+       success : function(code_html){ 
+       document.getElementById(bord).innerHTML=" ";   
+         if ( $.trim( $('#content').text() ).length == 0 )
+        {
+           $.ajax({
+       url : "{{ path('etudiant_getpointAll_homepage')}}",
+       type : "POST",
+       success : function(code_html){
+     $('#content').html(code_html);
+     }});
+        }   
+        }
+     });
+    
+        }
+        </script>
+<script src="{{ asset('bundles/etudiantetudiant/jquery-3.0.0.min.js') }}"></script>
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>

@@ -1,0 +1,49 @@
+Message:
+    type: entity
+    table: message
+    id:
+        idMsg:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_msg
+            generator:
+                strategy: IDENTITY
+    fields:
+        idEmet:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_emet
+        idRecep:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_recep
+        titreMsg:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: titre_msg
+        contenuMsg:
+            type: string
+            nullable: false
+            length: 200
+            options:
+                fixed: false
+            column: contenu_msg
+        dateenvoiMsg:
+            type: date
+            nullable: false
+            column: dateenvoi_msg
+        datelectureMsg:
+            type: date
+            nullable: false
+            column: datelecture_msg
+    lifecycleCallbacks: {  }

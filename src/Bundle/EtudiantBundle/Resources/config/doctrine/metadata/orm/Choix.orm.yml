@@ -1,0 +1,26 @@
+Choix:
+    type: entity
+    table: choix
+    id:
+        idChoix:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_choix
+            generator:
+                strategy: IDENTITY
+    fields:
+        texte:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+        statut:
+            type: string
+            nullable: false
+            length: null
+            options:
+                fixed: false
+    lifecycleCallbacks: {  }

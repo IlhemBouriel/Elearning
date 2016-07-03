@@ -1,0 +1,59 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+{{ include('EtudiantEtudiantBundle:etudiant:importBS.html.twig')}}
+<link href="{{ asset('bundles/etudiantetudiant/alertCSS.css') }}" rel="stylesheet" />
+
+{% if msg == 0 %}
+              {% else %}
+    <div class="alert-box success"><span>success: </span>your changes have been saved</div>
+    {% endif %}
+<form method="POST" action="{{path('etudiant_UpdateProfile_homepage')}}">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Login</label>
+    <input type="text" class="form-control" name="login" id="exampleInputEmail1" placeholder="{{me.login}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Password</label>
+    <input type="password" name="pass1" onblur="methode1()"  class="form-control" id="exampleInputPassword1" placeholder="{{me.password}}">
+  </div>
+  <div style="display:none" id="div" class="form-group">
+    <label for="exampleInputPassword1">Retype Password</label>
+    <input type="password" name="pass2"  onblur="methode2()" class="form-control" id="exampleInputPassword1" placeholder="Retype Password">
+  </div>
+ <div class="form-group">
+    <label for="exampleInputPassword1">FirstName</label>
+    <input type="text" class="form-control" name="prenom" id="exampleInputPassword1" placeholder="{{me.nomEtud}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">LastName</label>
+    <input type="text" class="form-control" name="nom" id="exampleInputPassword1" placeholder="{{me.prenomEtud}}">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">Email</label>
+    <input type="email" name="email" class="form-control" id="exampleInputPassword1" placeholder="{{me.mailEtud}}">
+  </div>
+  <button type="submit" class="btn btn-default">Submit</button>
+</form>
+
+</div>
+</div>
+
+<script type="text/javascript">
+
+function methode1()
+{
+  document.getElementById('div').style.display= 'inline';
+}
+function methode2()
+{
+  var pass1 = $("input[name=pass1]").val();
+  var pass2 = $("input[name=pass2]").val();
+  if (pass1 != pass2 )
+  {
+   $("input[name=pass1]").val("");
+   $("input[name=pass2]").val("");
+ document.getElementById('div').style.display= 'none';
+  }
+  }
+
+</script>
+<script src="{{ asset('bundles/etudiantetudiant/jquery-3.0.0.min.js') }}"></script>

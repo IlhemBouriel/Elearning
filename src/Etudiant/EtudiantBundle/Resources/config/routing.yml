@@ -1,0 +1,81 @@
+etudiant_etudiant_homepage:
+    path:     /
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:index }
+etudiant_inscri_homepage:
+    path:     /form
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getform }
+etudiant_signin_homepage:
+    path:     /sign
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:insert }
+etudiant_connect_homepage:       
+    path:     /connect
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:connect }
+etudiant_getHome_homepage:  
+    path:     /gethome
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:gethome }
+etudiant_deconnect_homepage:
+    path:     /deconnect
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:deconnect }
+etudiant_allcourses_homepage:
+    path:     /getall
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getall }
+etudiant_follow_homepage:
+    path:     /follow   
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:follow }
+etudiant_mycourses_homepage:
+    path:     /mine        
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:mine }
+etudiant_deleteC_homepage:
+    path:     /delC
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:deleteCourse }
+etudiant_openC_homepage:
+    path:     /openC
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:openCourse }             
+etudiant_result_homepage:
+    path:     /result       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getResult }
+etudiant_improve_homepage:
+    path:     /improve     
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:improve }
+etudiant_qcmGroupedByC_homepage:
+    path:     /groupByC       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:qcmGroupBy }
+etudiant_getQcm_homepage:
+    path:     /getQcm       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getQcm }     
+etudiant_verify_homepage:
+    path:     /verify       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:verify }     
+etudiant_getpoint_homepage:
+    path:     /getpoint       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getpoint }
+etudiant_randomQcm_homepage:            
+    path:     /random       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:random }
+etudiant_test_homepage:
+    path:     /testanswer           
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:testanswer }
+etudiant_getpointAll_homepage:            
+    path:     /getScore       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getScore }   
+etudiant_getcertifications_homepage:            
+    path:     /getcertif       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getCertif }
+etudiant_mymessages_homepage:            
+    path:     /getmessages       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getMessages }  
+etudiant_updateMsg_homepage:            
+    path:     /updateMsg       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:updateMsg } 
+etudiant_getFormSend_homepage:            
+    path:     /getFormSend       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:getFormSend }   
+etudiant_sendmessage_homepage:            
+    path:     /SendMsg           
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:SendMsg }
+etudiant_SetProfile_homepage:            
+    path:     /SetProfile       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:SetProfile }  
+etudiant_UpdateProfile_homepage:            
+    path:     /upDateProfile       
+    defaults: { _controller: EtudiantEtudiantBundle:Etudiant:upDateProfile }  

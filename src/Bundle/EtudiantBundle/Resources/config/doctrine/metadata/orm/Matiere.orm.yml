@@ -1,0 +1,29 @@
+Matiere:
+    type: entity
+    table: matiere
+    id:
+        idMat:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_mat
+            generator:
+                strategy: IDENTITY
+    fields:
+        intituleMat:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: intitule_mat
+        descriptionMat:
+            type: string
+            nullable: false
+            length: 20
+            options:
+                fixed: false
+            column: description_mat
+    lifecycleCallbacks: {  }

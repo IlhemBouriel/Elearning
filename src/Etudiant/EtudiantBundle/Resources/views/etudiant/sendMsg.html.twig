@@ -1,0 +1,49 @@
+{{ include('EtudiantEtudiantBundle:etudiant:template.html.twig')}}
+{{ include('EtudiantEtudiantBundle:etudiant:importBS.html.twig')}}
+<link href="{{ asset('bundles/etudiantetudiant/alertCSS.css') }}" rel="stylesheet" />
+
+{% if msg == 0 %}
+              {% else %}
+    <div class="alert-box success"><span>success: </span>your message has been sent</div>
+    {% endif %} 
+   <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h4 class="modal-title">Compose Message</h4>
+          </div>
+        
+            <form action="{{path('etudiant_sendmessage_homepage')}}" role="form" id="form" class="form-horizontal" method="post" >
+                <div class="form-group">
+                  <label class="col-sm-2" for="inputTo">To</label>
+                  <div class="col-sm-10"><select name="destinataire"class="form-control" id="inputTo">
+        
+  <option>Admin</option>
+</select>
+                    </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-2" for="inputSubject">Subject</label>
+                  <div class="col-sm-10"><input name="titre"  type="text" class="form-control" id="inputSubject" placeholder="subject"></div>
+                </div>
+                <div class="form-group">
+                  <label class="col-sm-12" for="inputBody">Message</label>
+                  <div class="col-sm-12"><textarea name="contenu" class="form-control" id="inputBody" rows="18"></textarea></div>
+                </div>
+            
+ 
+          <div class="modal-footer">
+            <button type="button" onclick="methode()" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button> 
+            <input type="submit" type="button" class="btn btn-primary ">Send <i class="fa fa-arrow-circle-right fa-lg"></i></input>
+            </form>
+            
+ 
+          </div>
+          </div>
+
+<script type="text/javascript">
+function methode()
+{
+   $("input[name=titre]").val(" ");
+   $("textarea[name=contenu]").val(" ");
+}
+</script>
+<script src="{{ asset('bundles/etudiantetudiant/jquery-3.0.0.min.js') }}"></script>

@@ -1,0 +1,37 @@
+QuestionChoix:
+    type: entity
+    table: question_choix
+    indexes:
+        fk2:
+            columns:
+                - id_choix_assoc
+        id_quest_assoc:
+            columns:
+                - id_quest_assoc
+        id_choix_assoc:
+            columns:
+                - id_choix_assoc
+    id:
+        idAsso:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            column: id_asso
+            generator:
+                strategy: IDENTITY
+    fields:
+        idQuestAssoc:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_quest_assoc
+        idChoixAssoc:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            column: id_choix_assoc
+    lifecycleCallbacks: {  }
